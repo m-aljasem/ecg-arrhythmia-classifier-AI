@@ -1,0 +1,40 @@
+# ECG Classification Project
+# Ignore data files, models, and temporary files
+*.npz
+*.keras
+*.h5
+*.pth
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb~
+
+# Data
+data/raw/
+data/processed/*.npz
