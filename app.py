@@ -255,10 +255,12 @@ CLASS_COLORS = {
     'HYP':  '#a78bfa',
 }
 
-MODELS_DIR   = 'models'
+# Resolve paths relative to this script so the app works regardless of launch directory
+_HERE        = os.path.dirname(os.path.abspath(__file__))
+MODELS_DIR   = os.path.join(_HERE, 'models')
 MODEL_PATH   = os.path.join(MODELS_DIR, 'model03.keras')
 SCALERS_PATH = os.path.join(MODELS_DIR, 'scalers.pkl')
-SAMPLE_DIR   = 'sample-data'
+SAMPLE_DIR   = os.path.join(_HERE, 'sample-data')
 WINDOW_SIZE  = 800
 
 LEAD_NAMES = ['I', 'II', 'III', 'aVR', 'aVL', 'aVF', 'V1', 'V2', 'V3', 'V4', 'V5', 'V6']
@@ -475,12 +477,19 @@ def main():
         scalers = None
 
         if os.path.exists(MODEL_PATH):
-            st.markdown('<span class="status-ok">✓ model03.keras loaded</span>',
-                        unsafe_allow_html=True)
             model = load_model(MODEL_PATH)
+            if model is not None:
+                st.markdown('<span class="status-ok">✓ model03.keras loaded</span>',
+                            unsafe_allow_html=True)
+            else:
+                st.markdown('<span class="status-err">✗ Model found but failed to load — see error above</span>',
+                            unsafe_allow_html=True)
         else:
-            st.markdown(f'<span class="status-err">✗ Model not found<br><small>{MODEL_PATH}</small></span>',
-                        unsafe_allow_html=True)
+            st.markdown(
+                f'<span class="status-err">✗ Model not found</span><br>'
+                f'<small style="color:#64748b;word-break:break-all;">{MODEL_PATH}</small>',
+                unsafe_allow_html=True,
+            )
 
         if os.path.exists(SCALERS_PATH):
             st.markdown('<span class="status-ok">✓ scalers.pkl loaded</span>',
