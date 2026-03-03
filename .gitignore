@@ -38,3 +38,8 @@ logs/
 # Data
 data/raw/
 data/processed/*.npz
+data/sample_ecg*.csv
+
+# Streamlit
+.streamlit/secrets.toml
+*.pyc

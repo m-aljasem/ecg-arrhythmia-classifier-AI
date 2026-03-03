@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Live ECG Classification Application - Try our AI-powered diagnostic tool">
+    <meta name="author" content="ECG Classification Team">
+    <title>Live App | ECG Classification</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Additional styles for app page */
+        .app-container {
+            padding: 0;
+            margin: 0;
+        }
+        
+        .app-placeholder {
+            background: linear-gradient(135deg, var(--lighter-red) 0%, var(--white) 100%);
+        }
+        
+        .placeholder-icon {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, var(--primary-red), var(--light-red));
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            margin: 0 auto 2rem;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .instructions {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            max-width: 800px;
+            margin: 2rem auto;
+            text-align: left;
+        }
+        
+        .instructions h3 {
+            color: var(--primary-red);
+            margin-bottom: 1rem;
+        }
+        
+        .instructions ol {
+            margin-left: 1.5rem;
+            line-height: 2;
+        }
+        
+        .instructions li {
+            margin-bottom: 0.5rem;
+            color: var(--dark-gray);
+        }
+        
+        .instructions code {
+            background-color: var(--lighter-red);
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: var(--dark-red);
+        }
+        
+        .embed-info {
+            background-color: var(--lighter-red);
+            padding: 1.5rem;
+            border-left: 4px solid var(--primary-red);
+            margin-top: 1.5rem;
+            border-radius: 4px;
+        }
+        
+        .embed-info strong {
+            color: var(--primary-red);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">⚡</div>
+                ECG Classifier
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="team.html" class="nav-link">Team</a></li>
+                <li><a href="app.html" class="nav-link">Live App</a></li>
+                <li><a href="https://github.com" class="nav-link" target="_blank">GitHub</a></li>
+            </ul>
+            <button class="mobile-menu-toggle">☰</button>
+        </div>
+    </nav>
+
+    <!-- App Container -->
+    <div class="app-container">
+        <!-- Placeholder - Replace iframe src with your Streamlit Cloud URL -->
+        <div class="app-placeholder">
+            <div class="placeholder-icon">🚀</div>
+            <h2>Streamlit App Coming Soon!</h2>
+            <p style="max-width: 600px; margin: 0 auto 2rem;">
+                This page will host the live ECG classification application once deployed to Streamlit Cloud.
+            </p>
+            
+            <!-- Instructions -->
+            <div class="instructions">
+                <h3>📋 Deployment Instructions</h3>
+                <p>To embed your Streamlit app on this page, follow these steps:</p>
+                
+                <ol>
+                    <li><strong>Deploy to Streamlit Cloud:</strong>
+                        <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                            <li>Go to <a href="https://share.streamlit.io/" target="_blank" style="color: var(--primary-red);">share.streamlit.io</a></li>
+                            <li>Connect your GitHub repository</li>
+                            <li>Select the <code>app.py</code> file from the project</li>
+                            <li>Click "Deploy"</li>
+                        </ul>
+                    </li>
+                    
+                    <li><strong>Get Your App URL:</strong>
+                        <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                            <li>After deployment, copy your app URL</li>
+                            <li>It will look like: <code>https://your-app.streamlit.app</code></li>
+                        </ul>
+                    </li>
+                    
+                    <li><strong>Embed in This Page:</strong>
+                        <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                            <li>Open <code>website/app.html</code></li>
+                            <li>Find the <code>&lt;div class="app-placeholder"&gt;</code> section</li>
+                            <li>Replace it with: <code>&lt;iframe class="app-frame" src="YOUR_STREAMLIT_URL?embedded=true"&gt;&lt;/iframe&gt;</code></li>
+                        </ul>
+                    </li>
+                </ol>
+                
+                <div class="embed-info">
+                    <strong>💡 Pro Tip:</strong> Add <code>?embedded=true</code> to your Streamlit URL to hide the default toolbar and make it blend better with your website!
+                </div>
+                
+                <div class="embed-info" style="margin-top: 1rem; background-color: #fff3cd; border-left-color: #ffc107;">
+                    <strong>⚠️ Note:</strong> Make sure your Streamlit app settings allow iframe embedding. Go to Settings → General → Enable "Allow embedding" in Streamlit Cloud.
+                </div>
+            </div>
+            
+            <!-- Example Code -->
+            <div class="instructions" style="margin-top: 1rem;">
+                <h3>💻 Example Embed Code</h3>
+                <p>Replace the placeholder div with this iframe code:</p>
+                <pre style="background-color: var(--dark-gray); color: var(--white); padding: 1rem; border-radius: 6px; overflow-x: auto;"><code>&lt;!-- App Container --&gt;
+&lt;div class="app-container"&gt;
+    &lt;iframe 
+        class="app-frame" 
+        src="https://your-app.streamlit.app?embedded=true"
+        title="ECG Classification Application"
+        allow="camera; microphone"
+    &gt;&lt;/iframe&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+            
+            <!-- Temporary Links -->
+            <div style="margin-top: 2rem;">
+                <p style="color: var(--gray); margin-bottom: 1rem;">In the meantime, you can:</p>
+                <div class="hero-buttons">
+                    <a href="../app.py" class="btn btn-red" download>Download app.py</a>
+                    <a href="index.html" class="btn btn-outline" style="color: var(--primary-red); border-color: var(--primary-red);">Back to Home</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 
+        ============================================
+        UNCOMMENT THIS SECTION AFTER DEPLOYMENT
+        ============================================
+        
+        <iframe 
+            class="app-frame" 
+            src="https://YOUR-APP-URL.streamlit.app?embedded=true"
+            title="ECG Classification Application"
+            allow="camera; microphone"
+        ></iframe>
+        
+        ============================================
+        -->
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>ECG Classification Project</h4>
+                <p>An open-source deep learning project for automated cardiac diagnosis from ECG signals.</p>
+                <p>&copy; 2026 ECG Classification Team</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="index.html">Home</a>
+                <a href="team.html">Team</a>
+                <a href="app.html">Live App</a>
+                <a href="https://github.com" target="_blank">GitHub Repository</a>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <a href="https://physionet.org/content/ptb-xl/" target="_blank">PTB-XL Dataset</a>
+                <a href="https://www.tensorflow.org/" target="_blank">TensorFlow</a>
+                <a href="https://streamlit.io/" target="_blank">Streamlit</a>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <p>MIT License</p>
+                <p><strong>Medical Disclaimer:</strong> This tool is for educational and research purposes only. Not for clinical use.</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>Developed with ❤️ for advancing medical AI research</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

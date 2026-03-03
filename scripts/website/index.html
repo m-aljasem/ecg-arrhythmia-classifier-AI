@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ECG Classification using Deep Learning - Automated diagnosis of cardiac conditions from 12-lead ECG signals">
+    <meta name="keywords" content="ECG, Deep Learning, Machine Learning, Cardiac Diagnosis, PTB-XL, Medical AI">
+    <meta name="author" content="ECG Classification Team">
+    <title>ECG Classification | Deep Learning for Cardiac Diagnosis</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">⚡</div>
+                ECG Classifier
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="team.html" class="nav-link">Team</a></li>
+                <li><a href="app.html" class="nav-link">Live App</a></li>
+                <li><a href="https://github.com" class="nav-link" target="_blank">GitHub</a></li>
+            </ul>
+            <button class="mobile-menu-toggle">☰</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>AI-Powered ECG Classification</h1>
+            <p>Automated diagnosis of cardiac conditions using deep learning and 12-lead ECG signals from the PTB-XL dataset</p>
+            <div class="hero-buttons">
+                <a href="app.html" class="btn btn-primary">Try Live Demo</a>
+                <a href="#features" class="btn btn-outline">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="section section-light">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">89%</div>
+                    <div class="stat-label">Peak Accuracy</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">21K+</div>
+                    <div class="stat-label">ECG Records</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Diagnostic Classes</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">12</div>
+                    <div class="stat-label">ECG Leads</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="section section-gray">
+        <div class="container">
+            <h2 class="section-title">Key Features</h2>
+            <p class="section-subtitle">Our system leverages state-of-the-art deep learning techniques to provide accurate cardiac diagnosis from ECG signals</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🧠</div>
+                    <h3>Deep Learning Models</h3>
+                    <p>Advanced 1D CNN architectures optimized for ECG signal processing with metadata integration for enhanced accuracy.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Multi-Class Classification</h3>
+                    <p>Accurately identifies 5 major cardiac conditions: Normal, Myocardial Infarction, ST/T Changes, Conduction Disturbance, and Hypertrophy.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Real-Time Processing</h3>
+                    <p>Fast inference pipeline capable of processing ECG recordings in seconds with an intuitive web interface.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔬</div>
+                    <h3>PTB-XL Dataset</h3>
+                    <p>Trained on over 21,000 clinical ECG recordings with expert annotations from the largest public ECG database.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📈</div>
+                    <h3>Data Augmentation</h3>
+                    <p>Sophisticated augmentation techniques including sliding windows and Gaussian noise to improve model robustness.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3>Web Application</h3>
+                    <p>Interactive Streamlit app for uploading ECG data, visualizing signals, and getting instant diagnostic predictions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Models Section -->
+    <section id="models" class="section section-red">
+        <div class="container">
+            <h2 class="section-title">Model Architectures</h2>
+            <p class="section-subtitle">Three specialized models designed for different use cases and performance requirements</p>
+            
+            <div class="models-grid">
+                <div class="model-card">
+                    <div class="model-header">
+                        <h3>Model 01</h3>
+                        <div class="model-accuracy">75%</div>
+                        <p>Metadata-Only</p>
+                    </div>
+                    <div class="model-body">
+                        <ul>
+                            <li>Uses patient metadata only</li>
+                            <li>Age, gender, baseline features</li>
+                            <li>Lightweight & fast inference</li>
+                            <li>Best for quick screening</li>
+                        </ul>
+                        <p><strong>Architecture:</strong> Dense layers (128 → 64 → 32 units) with BatchNorm and Dropout</p>
+                    </div>
+                </div>
+
+                <div class="model-card">
+                    <div class="model-header">
+                        <h3>Model 02</h3>
+                        <div class="model-accuracy">89%</div>
+                        <p>Combined Model</p>
+                    </div>
+                    <div class="model-body">
+                        <ul>
+                            <li>Integrates ECG signals + metadata</li>
+                            <li>1D CNN for signal processing</li>
+                            <li>Highest accuracy achieved</li>
+                            <li>Best for clinical accuracy</li>
+                        </ul>
+                        <p><strong>Architecture:</strong> Dual-branch: Conv1D layers for ECG + Dense for metadata, concatenated embeddings</p>
+                    </div>
+                </div>
+
+                <div class="model-card">
+                    <div class="model-header">
+                        <h3>Model 03</h3>
+                        <div class="model-accuracy">87%</div>
+                        <p>Alternative Combined</p>
+                    </div>
+                    <div class="model-body">
+                        <ul>
+                            <li>Alternative architecture design</li>
+                            <li>Different hyperparameters</li>
+                            <li>Balanced performance</li>
+                            <li>Good generalization</li>
+                        </ul>
+                        <p><strong>Architecture:</strong> Modified Conv1D structure with different kernel sizes and pooling strategies</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Stack -->
+    <section class="section section-light">
+        <div class="container">
+            <h2 class="section-title">Technology Stack</h2>
+            <p class="section-subtitle">Built with industry-leading tools and frameworks</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔥</div>
+                    <h3>TensorFlow & Keras</h3>
+                    <p>Deep learning framework for model development and training with GPU acceleration support.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🐍</div>
+                    <h3>Python 3.8+</h3>
+                    <p>Modern Python with NumPy, Pandas, and scikit-learn for data processing and analysis.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Streamlit</h3>
+                    <p>Interactive web framework for building the user-friendly application interface.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📡</div>
+                    <h3>WFDB Library</h3>
+                    <p>Specialized library for reading and processing ECG data in WFDB format.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Diagnostic Classes -->
+    <section class="section section-gray">
+        <div class="container">
+            <h2 class="section-title">Diagnostic Classes</h2>
+            <p class="section-subtitle">Our model can identify five major cardiac conditions</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">✓</div>
+                    <h3>NORM - Normal ECG</h3>
+                    <p>Healthy cardiac rhythm with no abnormalities detected. Baseline reference for comparison.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">⚠️</div>
+                    <h3>MI - Myocardial Infarction</h3>
+                    <p>Heart attack indicators including ST elevation and abnormal Q waves in ECG signals.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📉</div>
+                    <h3>STTC - ST/T Changes</h3>
+                    <p>Abnormalities in ST segment and T wave morphology indicating ischemia or other conditions.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>CD - Conduction Disturbance</h3>
+                    <p>Irregular electrical conduction patterns including bundle branch blocks and AV blocks.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">💓</div>
+                    <h3>HYP - Hypertrophy</h3>
+                    <p>Enlarged heart chambers detected through voltage criteria and QRS morphology changes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section section-red">
+        <div class="container text-center">
+            <h2 class="section-title">Ready to Try It?</h2>
+            <p class="section-subtitle">Experience our ECG classification system with your own data or use our sample ECG recordings</p>
+            <div class="hero-buttons">
+                <a href="app.html" class="btn btn-red">Launch Application</a>
+                <a href="team.html" class="btn btn-outline" style="color: var(--primary-red); border-color: var(--primary-red);">Meet the Team</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>ECG Classification Project</h4>
+                <p>An open-source deep learning project for automated cardiac diagnosis from ECG signals.</p>
+                <p>&copy; 2026 ECG Classification Team</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="index.html">Home</a>
+                <a href="team.html">Team</a>
+                <a href="app.html">Live App</a>
+                <a href="https://github.com" target="_blank">GitHub Repository</a>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <a href="https://physionet.org/content/ptb-xl/" target="_blank">PTB-XL Dataset</a>
+                <a href="https://www.tensorflow.org/" target="_blank">TensorFlow</a>
+                <a href="https://streamlit.io/" target="_blank">Streamlit</a>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <p>MIT License</p>
+                <p><strong>Medical Disclaimer:</strong> This tool is for educational and research purposes only. Not for clinical use.</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>Developed with ❤️ for advancing medical AI research</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
