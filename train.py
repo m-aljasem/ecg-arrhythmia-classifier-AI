@@ -1,13 +1,23 @@
-"""Training script for ECG classification models"""
+"""
+Training script for ECG classification models
+
+Classification of Life-Threatening Arrhythmia ECG Signals Using Deep Learning
+
+Author: Mohamad AlJasem
+Website: https://aljasem.eu.org
+GitHub: https://github.com/m-aljasem/ecg-arrhythmia-classifier-AI
+Contact: mohamad@aljasem.eu.org
+"""
 
 import os
 import argparse
+import pickle
 import numpy as np
 import tensorflow.keras as keras
 from src.data import ECGDataLoader, DataPreprocessor, AugmentedDataGenerator
 from src.models import ECGClassifierFactory
 from config import MODEL_CONFIGS, PROCESSED_DATA_FILE, MODEL01_CHECKPOINT, \
-    MODEL02_CHECKPOINT, MODEL03_CHECKPOINT, SAMPLING_RATE
+    MODEL02_CHECKPOINT, MODEL03_CHECKPOINT, SAMPLING_RATE, SUPERCLASSES
 
 
 def prepare_data(data_path: str):
@@ -173,6 +183,42 @@ def train_model03_with_augmentation(data_dict):
     return model, history
 
 
+def save_scalers(data_dict, output_path='models/scalers.pkl'):
+    """Save scalers for production use"""
+    print("\n=== Saving Scalers ===")
+    
+    # Recreate scalers from training data
+    from sklearn.preprocessing import StandardScaler
+    
+    X_train = data_dict['X_train']
+    Y_train = data_dict['Y_train']
+    
+    # Recreate the scalers
+    x_scaler = StandardScaler()
+    x_scaler.fit(X_train)
+    
+    y_scaler = StandardScaler()
+    y_scaler.fit(Y_train.reshape(-1, Y_train.shape[-1]))
+    
+    # Save the scalers
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    with open(output_path, 'wb') as f:
+        pickle.dump({
+            'x_scaler': x_scaler,
+            'y_scaler': y_scaler,
+            'superclasses': SUPERCLASSES,
+            'feature_names': ['age', 'sex', 'height', 'weight', 
+                            'infarction_stadium1', 'infarction_stadium2', 'pacemaker']
+        }, f)
+    
+    print(f"✓ Scalers saved to: {output_path}")
+    print("\nFor your application:")
+    print("  1. Load model: keras.models.load_model('model03.keras')")
+    print("  2. Load scalers: pickle.load(open('scalers.pkl', 'rb'))")
+    print("  3. Use x_scaler to normalize metadata")
+    print("  4. Use y_scaler to normalize ECG signals")
+
+
 def main():
     parser = argparse.ArgumentParser(description='Train ECG classification models')
     parser.add_argument('--data-path', type=str, required=True,
@@ -181,6 +227,8 @@ def main():
                        default='all', help='Which model to train')
     parser.add_argument('--skip-preprocessing', action='store_true',
                        help='Skip data preprocessing')
+    parser.add_argument('--save-scalers', action='store_true',
+                       help='Save scalers for production use')
     
     args = parser.parse_args()
     
@@ -205,6 +253,10 @@ def main():
     if args.model in ['model03', 'all']:
         print("\n=== Training Model03 (With Data Augmentation) ===")
         train_model03_with_augmentation(data_dict)
+    
+    # Save scalers if requested
+    if args.save_scalers or args.model == 'all':
+        save_scalers(data_dict)
 
 
 if __name__ == '__main__':

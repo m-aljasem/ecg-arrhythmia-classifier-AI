@@ -12,8 +12,10 @@ with open("README.md", "r", encoding="utf-8") as fh:
 setup(
     name="ecg-classification",
     version="1.0.0",
-    author="Your Name",
-    description="ECG Classification using PTB-XL Dataset",
+    author="Mohamad AlJasem",
+    author_email="mohamad@aljasem.eu.org",
+    url="https://github.com/m-aljasem/ecg-arrhythmia-classifier-AI",
+    description="Classification of Life-Threatening Arrhythmia ECG Signals Using Deep Learning",
     long_description=long_description,
     long_description_content_type="text/markdown",
     packages=find_packages(),

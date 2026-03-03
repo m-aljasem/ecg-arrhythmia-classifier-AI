@@ -1,6 +1,14 @@
 """
 Streamlit Web Application for ECG Classification
 
+Classification of Life-Threatening Arrhythmia ECG Signals Using Deep Learning
+
+Author: Mohamad AlJasem
+Website: https://aljasem.eu.org
+GitHub: https://github.com/m-aljasem/ecg-arrhythmia-classifier-AI
+Live Demo: https://ecg-classifier.aljasem.eu.org
+Contact: mohamad@aljasem.eu.org
+
 This app allows users to upload ECG data and get real-time predictions
 for cardiac diagnostic superclasses using trained deep learning models.
 

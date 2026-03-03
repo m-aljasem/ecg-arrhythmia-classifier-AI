@@ -249,6 +249,12 @@ class AugmentedDataGenerator(keras.utils.Sequence):
         ])
         batch_z = self.z[idx * self.batch_size:(idx + 1) * self.batch_size]
         
+        # Convert pandas DataFrames to numpy arrays if needed
+        if isinstance(batch_x, pd.DataFrame):
+            batch_x = batch_x.to_numpy()
+        if isinstance(batch_z, pd.DataFrame):
+            batch_z = batch_z.to_numpy()
+        
         if self.sigma > 0:
             batch_y += np.random.normal(loc=0.0, scale=self.sigma, 
                                        size=batch_y.shape)

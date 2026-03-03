@@ -1,4 +1,13 @@
-"""Project Configuration"""
+"""
+Project Configuration
+
+Classification of Life-Threatening Arrhythmia ECG Signals Using Deep Learning
+
+Author: Mohamad AlJasem
+Website: https://aljasem.eu.org
+GitHub: https://github.com/m-aljasem/ecg-arrhythmia-classifier-AI
+Contact: mohamad@aljasem.eu.org
+"""
 
 import os
 

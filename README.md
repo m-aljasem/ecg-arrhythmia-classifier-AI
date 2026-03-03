@@ -1,8 +1,13 @@
-# ECG Classification Project
+# Classification of Life-Threatening Arrhythmia ECG Signals Using Deep Learning
 
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![TensorFlow](https://img.shields.io/badge/TensorFlow-2.9+-orange.svg)](https://www.tensorflow.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+**Author:** [Mohamad AlJasem](https://aljasem.eu.org)  
+**Live Demo:** [https://ecg-classifier.aljasem.eu.org](https://ecg-classifier.aljasem.eu.org)  
+**GitHub:** [https://github.com/m-aljasem/ecg-arrhythmia-classifier-AI](https://github.com/m-aljasem/ecg-arrhythmia-classifier-AI)  
+**Contact:** [mohamad@aljasem.eu.org](mailto:mohamad@aljasem.eu.org)
 
 A professional deep learning system for ECG signal classification using the PTB-XL dataset. This project provides both a command-line training pipeline and an interactive web application for real-time cardiac diagnosis prediction.
 
