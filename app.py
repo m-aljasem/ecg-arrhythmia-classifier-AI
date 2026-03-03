@@ -452,7 +452,20 @@ def results_html(predictions, threshold):
 # MAIN APP
 # ─────────────────────────────────────────────────────────────────────────────
 def main():
-
+    # ── Header ──────────────────────────────────────────────────────────────
+    st.markdown("""
+    <div class="ecg-header">
+        <h1>🫀 ECG Arrhythmia Classifier</h1>
+        <p class="subtitle">12-lead ECG deep learning classification · PTB-XL dataset · Model 03</p>
+        <div class="badge-row">
+            <span class="badge badge-norm">NORM — Normal</span>
+            <span class="badge badge-mi">MI — Myocardial Infarction</span>
+            <span class="badge badge-sttc">STTC — ST/T Change</span>
+            <span class="badge badge-cd">CD — Conduction Disturbance</span>
+            <span class="badge badge-hyp">HYP — Hypertrophy</span>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
 
     # ── Sidebar ──────────────────────────────────────────────────────────────
     with st.sidebar:
@@ -589,13 +602,36 @@ def main():
             if hea and dat:
                 try:
                     with tempfile.TemporaryDirectory() as tmp:
-                        base = "record"
-                        open(os.path.join(tmp, f"{base}.hea"), 'wb').write(hea.read())
-                        open(os.path.join(tmp, f"{base}.dat"), 'wb').write(dat.read())
-                        rec         = wfdb.rdrecord(os.path.join(tmp, base))
-                        ecg_data    = rec.p_signal
-                        record_title = hea.name.replace('.hea', '')
-                        fs          = rec.fs if rec.fs else 500
+                        # Derive the base name from the .hea filename so the
+                        # internal record-name reference inside the header matches
+                        # the filenames on disk (e.g. "00010_lr.hea" → base "00010_lr")
+                        base     = hea.name.rsplit('.', 1)[0]
+                        hea_path = os.path.join(tmp, f"{base}.hea")
+                        dat_path = os.path.join(tmp, f"{base}.dat")
+
+                        hea_bytes = hea.read()
+
+                        # The first line of a WFDB header is "<record_name> …".
+                        # If the embedded record name differs from our base name,
+                        # rewrite it so wfdb can find the matching .dat file.
+                        lines = hea_bytes.decode('utf-8', errors='replace').splitlines()
+                        if lines:
+                            parts    = lines[0].split()
+                            embedded = parts[0] if parts else base
+                            if embedded != base:
+                                parts[0] = base
+                                lines[0] = ' '.join(parts)
+                                hea_bytes = '\n'.join(lines).encode('utf-8')
+
+                        with open(hea_path, 'wb') as f:
+                            f.write(hea_bytes)
+                        with open(dat_path, 'wb') as f:
+                            f.write(dat.read())
+
+                        rec          = wfdb.rdrecord(os.path.join(tmp, base))
+                        ecg_data     = rec.p_signal
+                        record_title = base
+                        fs           = rec.fs if rec.fs else 500
                         st.success(f"✓ {ecg_data.shape[0]} × {ecg_data.shape[1]} leads @ {fs} Hz")
                 except Exception as e:
                     st.error(f"WFDB error: {e}")
