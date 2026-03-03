@@ -452,20 +452,7 @@ def results_html(predictions, threshold):
 # MAIN APP
 # ─────────────────────────────────────────────────────────────────────────────
 def main():
-    # ── Header ──────────────────────────────────────────────────────────────
-    st.markdown("""
-    <div class="ecg-header">
-        <h1>🫀 ECG Arrhythmia Classifier</h1>
-        <p class="subtitle">12-lead ECG deep learning classification · PTB-XL dataset · Model 03</p>
-        <div class="badge-row">
-            <span class="badge badge-norm">NORM — Normal</span>
-            <span class="badge badge-mi">MI — Myocardial Infarction</span>
-            <span class="badge badge-sttc">STTC — ST/T Change</span>
-            <span class="badge badge-cd">CD — Conduction Disturbance</span>
-            <span class="badge badge-hyp">HYP — Hypertrophy</span>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
+
 
     # ── Sidebar ──────────────────────────────────────────────────────────────
     with st.sidebar:
