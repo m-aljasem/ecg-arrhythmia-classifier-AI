@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Technical methodology for ECG arrhythmia classification using PTB-XL and deep learning.">
+  <title>ECG Arrhythmia Classifier | Methodology</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark site-nav sticky-top" aria-label="Main navigation">
+      <div class="container py-1">
+        <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="index.html">
+          <span class="brand-badge">ECG</span>
+          Arrhythmia Classifier
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link active" href="methodology.html">Methodology</a></li>
+            <li class="nav-item"><a class="nav-link" href="demo.html">Live Demo</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="py-5 py-lg-6 hero-section">
+      <div class="container">
+        <p class="eyebrow mb-3">Technical Detail</p>
+        <h1 class="display-6 hero-title mb-3">Training and Evaluation Methodology</h1>
+        <p class="lead text-secondary section-max">This page summarizes the implemented training pipeline, model architecture strategy, and deployment setup used for the ECG arrhythmia classification system.</p>
+      </div>
+    </section>
+
+    <section class="py-5 border-top">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-lg-6">
+            <div class="card border-0 shadow-sm h-100">
+              <div class="card-body p-4 p-lg-5">
+                <h2 class="h4 mb-3">Data and Label Construction</h2>
+                <ul class="text-secondary lh-lg mb-0">
+                  <li>Dataset source: PTB-XL public ECG corpus with 12-lead waveforms and metadata.</li>
+                  <li>SCP code aggregation transforms raw statements into five diagnostic superclasses.</li>
+                  <li>Signals are loaded at configured sampling rates and standardized per training workflow.</li>
+                  <li>Metadata features include age, sex, height, weight, infarction staging, and pacemaker status.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="card border-0 shadow-sm h-100">
+              <div class="card-body p-4 p-lg-5">
+                <h2 class="h4 mb-3">Modeling Strategy</h2>
+                <ul class="text-secondary lh-lg mb-0">
+                  <li>Model01: metadata-only dense network for baseline comparisons.</li>
+                  <li>Model02: dual-input architecture (metadata branch + Conv1D ECG branch).</li>
+                  <li>Model03: augmentation-enhanced variant using windowing and additive noise.</li>
+                  <li>All models are trained as multi-label classifiers with sigmoid outputs.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-5 bg-light border-top border-bottom">
+      <div class="container">
+        <h2 class="section-title text-center mb-4">Pipeline Components</h2>
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-3">
+            <div class="pipeline-step h-100">
+              <p class="pipeline-index">01</p>
+              <h3 class="h6">Preprocessing</h3>
+              <p class="small text-secondary mb-0">Metadata engineering, target creation, standardized scaling, and split preparation.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="pipeline-step h-100">
+              <p class="pipeline-index">02</p>
+              <h3 class="h6">Training</h3>
+              <p class="small text-secondary mb-0">TensorFlow/Keras training with early stopping and model checkpoint tracking.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="pipeline-step h-100">
+              <p class="pipeline-index">03</p>
+              <h3 class="h6">Evaluation</h3>
+              <p class="small text-secondary mb-0">Held-out set performance measurement using shared post-processing logic.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="pipeline-step h-100">
+              <p class="pipeline-index">04</p>
+              <h3 class="h6">Deployment</h3>
+              <p class="small text-secondary mb-0">Streamlit inference interface with embedded web presentation for review sessions.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-5 py-lg-6">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-lg-8">
+            <h2 class="section-title">Reproducible Training Commands</h2>
+            <p class="text-secondary">Representative commands from the project workflow:</p>
+            <div class="command-block">
+<pre><code># prepare and train all models
+python train.py --data-path /path/to/ptbxl --model all
+
+# train the best-performing architecture
+python train.py --data-path /path/to/ptbxl --model model02
+
+# evaluate trained checkpoints
+python evaluate.py --model all</code></pre>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="card border-0 shadow-sm h-100">
+              <div class="card-body p-4">
+                <h2 class="h5 mb-3">Use Boundary</h2>
+                <p class="small text-secondary mb-2">This platform is presented as a computational cardiology research demonstrator.</p>
+                <p class="small text-secondary mb-0">It does not replace clinical interpretation, formal diagnosis, or physician-led decision workflows.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer py-4 border-top">
+    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2">
+      <p class="mb-0 small text-secondary">ECG Arrhythmia Classifier Project</p>
+      <div class="footer-links d-flex flex-wrap align-items-center gap-3">
+        <a class="small text-decoration-none text-danger" href="https://aljasem.eu.org" target="_blank" rel="noopener">Mohamad AlJasem</a>
+        <a class="small text-decoration-none text-danger github-link d-inline-flex align-items-center gap-1" href="https://github.com/m-aljasem/ecg-arrhythmia-classifier-AI/" target="_blank" rel="noopener" aria-label="GitHub project repository">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8"/>
+          </svg>
+          GitHub Project
+        </a>
+        <a class="small text-decoration-none text-danger" href="demo.html">Go to Live Demo</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

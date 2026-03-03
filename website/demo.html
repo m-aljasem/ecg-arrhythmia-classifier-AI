@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Live embedded Streamlit demo for ECG arrhythmia classification.">
+  <title>ECG Arrhythmia Classifier | Live Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark site-nav sticky-top" aria-label="Main navigation">
+      <div class="container py-1">
+        <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="index.html">
+          <span class="brand-badge">ECG</span>
+          Arrhythmia Classifier
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="methodology.html">Methodology</a></li>
+            <li class="nav-item"><a class="nav-link active" href="demo.html">Live Demo</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="py-5 border-bottom demo-head">
+      <div class="container">
+        <div class="row g-3 align-items-end">
+          <div class="col-lg-8">
+            <p class="eyebrow mb-2">Interactive Testing</p>
+            <h1 class="display-6 hero-title mb-2">Live Streamlit Demo</h1>
+            <p class="text-secondary mb-0">Use this embedded interface to upload ECG input and review model predictions in real time.</p>
+          </div>
+          <div class="col-lg-4 text-lg-end">
+            <a href="https://ecg-classifier.aljasem.eu.org" target="_blank" rel="noopener" class="btn btn-outline-danger">Open Demo in New Tab</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-4 py-lg-5">
+      <div class="container">
+        <div class="embed-wrap">
+          <iframe
+            id="streamlit-embed"
+            class="streamlit-frame"
+            title="ECG Classifier Streamlit Application"
+            src="https://ecg-arrhythmia-classifier-ai.streamlit.app/?embed=true"
+            loading="lazy"
+            allow="clipboard-read; clipboard-write"
+            referrerpolicy="strict-origin-when-cross-origin"
+          ></iframe>
+        </div>
+        <div class="alert alert-light border mt-3 mb-0" role="alert">
+          If your browser blocks embedded content, use <a href="https://ecg-classifier.aljasem.eu.org" target="_blank" rel="noopener" class="alert-link">the direct app link</a>.
+        </div>
+      </div>
+    </section>
+
+    <section class="py-5 bg-light border-top">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-md-6">
+            <h2 class="h5">Suggested Demonstration Flow</h2>
+            <ol class="text-secondary mb-0 lh-lg">
+              <li>Select input format (CSV or WFDB compatible files).</li>
+              <li>Provide the patient metadata fields requested by the app.</li>
+              <li>Run prediction and inspect class-level probabilities.</li>
+              <li>Review the ECG visualization panel for signal quality checks.</li>
+            </ol>
+          </div>
+          <div class="col-md-6">
+            <h2 class="h5">Clinical Framing</h2>
+            <p class="text-secondary mb-0">The model output is intended for research interpretation and workflow prototyping. Final clinical judgment remains physician-led and context-dependent.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer py-4 border-top">
+    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2">
+      <p class="mb-0 small text-secondary">ECG Arrhythmia Classifier Project</p>
+      <div class="footer-links d-flex flex-wrap align-items-center gap-3">
+        <a class="small text-decoration-none text-danger" href="https://aljasem.eu.org" target="_blank" rel="noopener">Mohamad AlJasem</a>
+        <a class="small text-decoration-none text-danger github-link d-inline-flex align-items-center gap-1" href="https://github.com/m-aljasem/ecg-arrhythmia-classifier-AI/" target="_blank" rel="noopener" aria-label="GitHub project repository">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8"/>
+          </svg>
+          GitHub Project
+        </a>
+        <a class="small text-decoration-none text-danger" href="methodology.html">View Methodology</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
