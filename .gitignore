@@ -1,7 +1,6 @@
 # ECG Classification Project
 # Ignore data files, models, and temporary files
 *.npz
-*.keras
 *.h5
 *.pth
 
